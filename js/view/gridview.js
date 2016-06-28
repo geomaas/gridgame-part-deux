@@ -8,7 +8,6 @@ module.exports = Backbone.View.extend({
     events: {
         // 'event-name selector': 'function-to-call'
         'click #up': 'clickUp',
-        // 'keypress #up': 'keyUp',
         'click #down': 'clickDown',
         'click #left': 'clickLeft',
         'click #right': 'clickRight',
@@ -17,10 +16,8 @@ module.exports = Backbone.View.extend({
 
     clickUp: function () {
         this.model.up();
+        console.log();
     },
-    // keyUp: function () {
-    //   this.model.keyUp();
-    // },
 
     clickDown: function () {
         this.model.down();
@@ -46,12 +43,13 @@ module.exports = Backbone.View.extend({
         let yMove = this.el.querySelector('#vertical');
         yMove.textContent = this.model.get('yStart');
 
-        // let playerName = this.el.querySelector('#playerName');
-        // playerName.value = this.model.get('player');
-        // console.log(player);
+        let movesCounter = this.el.querySelector('#moves');
+        movesCounter.textContent = this.model.get('moves')
 
-        // let song = this.el.querySelector('#current-song');
-        // // song.textContent = this.model.currentSong();
-        // song.innerHTML = `The song is ${this.model.currentSong()}`;
+        let energyCounter = this.el.querySelector('#energy')
+        energyCounter.textContent = this.model.get('largeEnergy')
+
+      
+
     },
 });

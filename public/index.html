@@ -13,37 +13,66 @@
 
     <div class="row">
         <div class="col-md-4 login" id="player-login">
-          <div class="col-lg-offset-1 col-lg-10">
-            <h1>Player Login</h1>
-            <div class="input-group">
-                <input type="text" id="playerName"class="form-control" placeholder="Player One">
-                <span class="input-group-btn">
+            <div class="col-lg-offset-1 col-lg-10">
+                <h1>Player Login</h1>
+                <div class="input-group">
+                    <input type="text" id="playerName" class="form-control" placeholder="Player One">
+                    <span class="input-group-btn">
                   <button class="btn btn-secondary" id="playerInput" type="button">Start</button>
                 </span>
-
+                </div>
+                <h3>Player: <span id="name">blank</span></h3>
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="radio">
+                            <label>
+                                <h4>  <input type="radio" name="gridRadios" id="large-player" value="largePlayer" checked> Large Player</h4>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <h5>  <input type="radio" name="gridRadios" id="small-player" value="smallPlayer"> Small Player</h5>
+                            </label>
+                        </div>
+                        <button class="btn btn-secondary" id="playerSize" type="button">Start</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
         <div class="col-md-8 game-grid">
-          <h1>Game Grid</h1>
+            <h1>Game Grid</h1>
             <div id="position">
                 <div class="vertical">
                     <p>
-                      <h3> vertical <span id="vertical">0</span></h3>
+                        <h3> vertical <span id="vertical">0</span></h3>
                     </p>
                     <button id="up" type="button" class="btn btn-primary">Up</button>
                     <button id="down" type="button" class="btn btn-primary" name="down-button">Down</button>
                 </div>
                 <div class="horizontal">
                     <p>
-                      <h3>  horizontal <span id="horizontal">0</span> </h3>
+                        <h3>  horizontal <span id="horizontal">0</span> </h3>
                     </p>
                     <button id="left" type="button" class="btn btn-primary" name="left-button">Left</button>
                     <button id="right" type="button" class="btn btn-primary" name="right-button">Right</button>
                 </div>
+                <div class="Stats">
+                  <h4>Moves: <span id="moves">0</span> </h4>
+                  <h4>Energy: <span id="energy">150</span> </h4>
 
+                </div>
             </div>
         </div>
+        <a href="#game-over"></a>
+        <div id="over-screen" class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-3">GAME OVER!!!</h1>
+                <h2>Score <span>0</span></h2>
+                <h3>Winners Don't Do Drugs!</h3>
+                <button id="restart" type="button" class="btn btn-danger">RESTART</button>
+            </div>
+        </div>
+        </a>
     </div>
 
 

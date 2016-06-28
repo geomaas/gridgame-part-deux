@@ -13,15 +13,15 @@ module.exports = Backbone.View.extend({
 
     enterPlayer: function () {
         this.model.currentPlayer();
-        console.log(currentPlayer);
+        console.log(document.getElementById('playerName').value);
     },
 
     // How to update the DOM when things change
     render: function () {
 
 
-        let playerName = this.el.querySelector('#playerName');
-        playerName.html = this.model.get('player');
+      let name = this.el.querySelector('#name')
+      name.textContent = this.model.get()
 
 
         // let song = this.el.querySelector('#current-song');

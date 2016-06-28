@@ -1,7 +1,14 @@
 .login {
-  height: 600px;
+  min-height: 600px;
   background-color: lightgreen; }
 
 .game-grid {
-  height: 600px;
+  min-height: 600px;
   background-color: lightblue; }
+
+.jumbotron .container {
+  text-align: center;
+  min-height: 300px; }
+
+.hidden {
+  display: none; }

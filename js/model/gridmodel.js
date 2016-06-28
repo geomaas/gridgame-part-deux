@@ -1,5 +1,3 @@
-
-
 module.exports = Backbone.Model.extend({
     // Initial value for data that the model is responsible for.
     defaults: {
@@ -9,40 +7,55 @@ module.exports = Backbone.Model.extend({
 
         player: "default",
 
+        moves: 0,
+
+        largeEnergy: 150,
+
+        smallEngergy: 100,
+
     },
 
     up: function() {
         if (this.get('yStart') < 10) {
             this.set('yStart', this.get('yStart') + 1);
+            this.set('moves', this.get('moves') + 1);
         }
-    },
 
-    // keyUp: function (){
-    //   if(e.keyCode == 38){
-    //     this.set('yStart', this.get('yStart') + 1);
-    //   }
-    // },
+        // if (this.get('moves') > 0) {
+        //     this.set('largeEnergy', this.get('largeEnergy') - 20);
+        //
+        // }
+    },
 
     down: function() {
         if (this.get('yStart') > 0) {
             this.set('yStart', this.get('yStart') - 1);
+            this.set('moves', this.get('moves') + 1);
         }
+
     },
 
     left: function() {
-      if (this.get('xStart') > 0) {
-          this.set('xStart', this.get('xStart') - 1);
-      }
+        if (this.get('xStart') > 0) {
+            this.set('xStart', this.get('xStart') - 1);
+        }
+        if (this.get('xStart') > 0) {
+            this.set('moves', this.get('moves') + 1);
+        }
+
     },
 
     right: function() {
-      if (this.get('xStart') < 10) {
-          this.set('xStart', this.get('xStart') + 1);
-      }
+        if (this.get('xStart') < 10) {
+            this.set('xStart', this.get('xStart') + 1);
+        }
+        if (this.get('xStart') < 10) {
+            this.set('moves', this.get('moves') + 1);
+        }
     },
 
-    currentPlayer: function () {
-       this.get('player');
-   }
+    currentPlayer: function() {
+        this.set('player');
+    }
 
 });
