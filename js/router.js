@@ -34,8 +34,10 @@ module.exports = Backbone.Router.extend({
     routes: {
         // url : function
         'game-start': 'player',
+        'game-start': 'grid',
         'game-over': 'restartGame',
         '': 'grid',
+        '': 'player',
     },
 
     // newgame: function () {
@@ -49,9 +51,9 @@ module.exports = Backbone.Router.extend({
     restartGame: function () {
         console.log('restart test');
         // make the add view show up
-        this.player.el.classList.add('hidden');
-        this.grid.el.classList.add('hidden');
+        this.player.el.classList.remove('hidden');
+        this.grid.el.classList.remove('hidden');
         // make the list view hide
-        this.over.el.classList.remove('hidden');
+        this.over.el.classList.add('hidden');
     },
 });

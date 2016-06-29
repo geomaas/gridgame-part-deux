@@ -36,16 +36,14 @@ window.addEventListener('load', function () {
 });
 
 },{"./router":3}],2:[function(require,module,exports){
-
-
 module.exports = Backbone.Model.extend({
     // Initial value for data that the model is responsible for.
     defaults: {
-        xStart: 0, //horizontal
+        xStart: 1, //horizontal
 
-        yStart: 0, //vertical
+        yStart: 1, //vertical
 
-        player: "default",
+        player: document.getElementById('playerName').value,
 
         moves: 0,
 
@@ -59,47 +57,46 @@ module.exports = Backbone.Model.extend({
         if (this.get('yStart') < 10) {
             this.set('yStart', this.get('yStart') + 1);
             this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
+        }
+        if (this.get('largeEnergy') <= 0) {
+          console.log(restartGame);
+
         }
 
-        
-        if(this.get('moves') > 0) {
-          this.set('largeEnergy', this.get('largeEnergy') - 20);
 
-        }
     },
 
     down: function() {
-        if (this.get('yStart') > 0) {
+        if (this.get('yStart') > 1) {
             this.set('yStart', this.get('yStart') - 1);
-        }
-        if (this.get('yStart') > 0 ) {
-          this.set('moves', this.get('moves') +1);
+            this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
         }
 
     },
 
     left: function() {
-      if (this.get('xStart') > 0) {
-          this.set('xStart', this.get('xStart') - 1);
-      }
-      if (this.get('xStart') > 0 ) {
-        this.set('moves', this.get('moves') +1);
-      }
+        if (this.get('xStart') > 1) {
+            this.set('xStart', this.get('xStart') - 1);
+            this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
+        }
 
     },
 
     right: function() {
-      if (this.get('xStart') < 10) {
-          this.set('xStart', this.get('xStart') + 1);
-      }
-      if (this.get('xStart') < 10) {
-        this.set('moves', this.get('moves') + 1);
-      }
+        if (this.get('xStart') < 10) {
+            this.set('xStart', this.get('xStart') + 1);
+            this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
+        }
+
     },
 
-    currentPlayer: function () {
-       this.set('player');
-   }
+    currentPlayer: function() {
+        this.get('player');
+    }
 
 });
 
@@ -140,8 +137,10 @@ module.exports = Backbone.Router.extend({
     routes: {
         // url : function
         'game-start': 'player',
+        'game-start': 'grid',
         'game-over': 'restartGame',
         '': 'grid',
+        '': 'player',
     },
 
     // newgame: function () {
@@ -155,10 +154,10 @@ module.exports = Backbone.Router.extend({
     restartGame: function () {
         console.log('restart test');
         // make the add view show up
-        this.player.el.classList.add('hidden');
-        this.grid.el.classList.add('hidden');
+        this.player.el.classList.remove('hidden');
+        this.grid.el.classList.remove('hidden');
         // make the list view hide
-        this.over.el.classList.remove('hidden');
+        this.over.el.classList.add('hidden');
     },
 });
 
@@ -200,12 +199,13 @@ module.exports = Backbone.View.extend({
     events: {
         // 'event-name selector': 'function-to-call'
 
-        'click #playerInput': 'enterPlayer'
+        'click #player-input': 'enterPlayer'
     },
 
     enterPlayer: function () {
-        this.model.currentPlayer();
-        console.log(document.getElementById('playerName').value);
+      let player =  document.getElementById('playerName').value;
+      console.log(player);
+      console.log("GEFF", document.getElementById('playerName').value);
     },
 
     // How to update the DOM when things change
@@ -213,8 +213,9 @@ module.exports = Backbone.View.extend({
 
 
       let name = this.el.querySelector('#name')
-      name.textContent = this.model.get()
-
+      name.textContent = this.model.get('player');
+      // document.getElementById('playerName').value
+      document.getElementById('playerName').value = "";
 
         // let song = this.el.querySelector('#current-song');
         // // song.textContent = this.model.currentSong();

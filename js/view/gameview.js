@@ -8,12 +8,13 @@ module.exports = Backbone.View.extend({
     events: {
         // 'event-name selector': 'function-to-call'
 
-        'click #playerInput': 'enterPlayer'
+        'click #player-input': 'enterPlayer'
     },
 
     enterPlayer: function () {
-        this.model.currentPlayer();
-        console.log(document.getElementById('playerName').value);
+      let player =  document.getElementById('playerName').value;
+      console.log(player);
+      console.log("GEFF", document.getElementById('playerName').value);
     },
 
     // How to update the DOM when things change
@@ -21,8 +22,9 @@ module.exports = Backbone.View.extend({
 
 
       let name = this.el.querySelector('#name')
-      name.textContent = this.model.get()
-
+      name.textContent = this.model.get('player');
+      // document.getElementById('playerName').value
+      document.getElementById('playerName').value = "";
 
         // let song = this.el.querySelector('#current-song');
         // // song.textContent = this.model.currentSong();

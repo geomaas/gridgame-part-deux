@@ -1,11 +1,11 @@
 module.exports = Backbone.Model.extend({
     // Initial value for data that the model is responsible for.
     defaults: {
-        xStart: 0, //horizontal
+        xStart: 1, //horizontal
 
-        yStart: 0, //vertical
+        yStart: 1, //vertical
 
-        player: "default",
+        player: document.getElementById('playerName').value,
 
         moves: 0,
 
@@ -19,28 +19,30 @@ module.exports = Backbone.Model.extend({
         if (this.get('yStart') < 10) {
             this.set('yStart', this.get('yStart') + 1);
             this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
+        }
+        if (this.get('largeEnergy') <= 0) {
+          console.log(restartGame);
+
         }
 
-        // if (this.get('moves') > 0) {
-        //     this.set('largeEnergy', this.get('largeEnergy') - 20);
-        //
-        // }
+
     },
 
     down: function() {
-        if (this.get('yStart') > 0) {
+        if (this.get('yStart') > 1) {
             this.set('yStart', this.get('yStart') - 1);
             this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
         }
 
     },
 
     left: function() {
-        if (this.get('xStart') > 0) {
+        if (this.get('xStart') > 1) {
             this.set('xStart', this.get('xStart') - 1);
-        }
-        if (this.get('xStart') > 0) {
             this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
         }
 
     },
@@ -48,14 +50,14 @@ module.exports = Backbone.Model.extend({
     right: function() {
         if (this.get('xStart') < 10) {
             this.set('xStart', this.get('xStart') + 1);
-        }
-        if (this.get('xStart') < 10) {
             this.set('moves', this.get('moves') + 1);
+            this.set('largeEnergy', this.get('largeEnergy') - 20);
         }
+
     },
 
     currentPlayer: function() {
-        this.set('player');
+        this.get('player');
     }
 
 });
