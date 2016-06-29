@@ -37,13 +37,14 @@ window.addEventListener('load', function () {
 
 },{"./router":3}],2:[function(require,module,exports){
 module.exports = Backbone.Model.extend({
+    url:'',
     // Initial value for data that the model is responsible for.
     defaults: {
         xStart: 1, //horizontal
 
         yStart: 1, //vertical
 
-        player: document.getElementById('playerName').value,
+        player: "default",
 
         moves: 0,
 
@@ -206,6 +207,8 @@ module.exports = Backbone.View.extend({
       let player =  document.getElementById('playerName').value;
       console.log(player);
       console.log("GEFF", document.getElementById('playerName').value);
+
+      this.model.update
     },
 
     // How to update the DOM when things change

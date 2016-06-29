@@ -15,6 +15,8 @@ module.exports = Backbone.View.extend({
       let player =  document.getElementById('playerName').value;
       console.log(player);
       console.log("GEFF", document.getElementById('playerName').value);
+
+      this.model.update
     },
 
     // How to update the DOM when things change
